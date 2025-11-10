@@ -14,6 +14,7 @@ botones.forEach(boton => {
         jugadaUsuario = this.dataset.jugada;
         resultadoMaquina = Math.floor(Math.random() * 3);
         let jugadaMaquina;
+        let mensaje;
         
         if (resultadoMaquina === 0) {
 
@@ -26,19 +27,26 @@ botones.forEach(boton => {
         console.log("Maquina ha sacado " + jugadaMaquina)
 
         if (jugadaMaquina === jugadaUsuario) {
-            console.log("empate");
+            mensaje = "Ha habido un empate";
         }
         else if ((jugadaMaquina === "piedra" && jugadaUsuario === "tijera") || (jugadaMaquina === "tijera" && jugadaUsuario === "papel") || (jugadaMaquina === "papel" && jugadaUsuario === "piedra")) {
-            console.log("Maquina ha ganado")
+            mensaje= "El ordenador ha ganado";
             puntosM = puntosM + 1;
         }
         else {
-            console.log("Usuario ha ganado")
+            mensaje ="El usuario ha ganado"
             puntosU = puntosU + 1;
 
         }
         console.log(puntosM)
         console.log(puntosU)
+
+        resultado.innerHTML =
+         '<p>Tu jugada: <strong>' + jugadaUsuario + '</strong></p>' + 
+         '<p>Jugada del ordenador: <strong>' + jugadaMaquina + '</strong></p>' + mensaje;
+
+        contU.innerHTML = "Tus puntos: "+ puntosU;
+        contM.innerHTML = "Puntos del ordenador: "+ puntosM;
 
     });
 });
